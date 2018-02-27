@@ -1,0 +1,18 @@
+# Pull core image.
+FROM centos:latest
+
+# Install epel repo.
+RUN yum install -y epel-release 
+RUN yum update -y
+
+# Install system packages.
+RUN yum install -y wget vim net-tools initscripts gcc make tar
+RUN yum install -y python-devel python-setuptools
+RUN easy_install supervisor
+RUN easy_install pip
+
+# Create supervisor config directory.
+RUN mkdir /etc/supervisord.d
+
+# Cleanup history.
+RUN history -c
