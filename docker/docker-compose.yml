@@ -1,0 +1,30 @@
+version: '3'
+services:
+  demo-app:
+    image: demo/app:v1
+    container_name: demo-app
+    command: /usr/bin/supervisord
+    hostname: demo-app
+    ports:
+      - "2000:80"
+    volumes:
+      - /opt/demo/app:/opt/app
+      - /opt/demo/supervisor/conf/main.conf:/etc/supervisord.conf
+      - /opt/demo/supervisor/conf/app.ini:/etc/supervisord.d/app.ini
+    links:
+      - demo-redis:demo-redis
+    depends_on:
+      - demo-redis
+  demo-redis:
+    image: demo/redis:v1
+    container_name: demo-redis
+    command: /usr/bin/supervisord
+    hostname: demo-redis
+    ports:
+    - "3000:6379"
+    volumes:
+    - /opt/demo/redis/data:/opt/redis/data
+    - /opt/demo/redis/log:/opt/redis/log
+    - /opt/demo/redis/conf/main.conf:/opt/redis/conf/redis.conf
+    - /opt/demo/supervisor/conf/main.conf:/etc/supervisord.conf
+    - /opt/demo/supervisor/conf/redis.ini:/etc/supervisord.d/redis.ini
