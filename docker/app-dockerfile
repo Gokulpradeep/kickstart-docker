@@ -1,12 +1,12 @@
-# Pull core image.
+# pull base image.
 FROM demo/base:v1
 
-# Install python packages.
+# install python packages.
 RUN pip install flask==0.12.1
 RUN pip install redis==2.10.5
 
-# Create necessary directories.
+# create necessary directories.
 RUN mkdir /opt/app
 
-# Cleanup history.
+# cleanup history.
 RUN history -c

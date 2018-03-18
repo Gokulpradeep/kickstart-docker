@@ -1,10 +1,10 @@
-# Pull core image.
+# pull base image.
 FROM demo/base:v1
 
-# Install system packages.
+# install system packages.
 RUN yum install -y jemalloc tcl
 
-# Install redis.
+# install redis.
 WORKDIR /usr/local/lib
 RUN wget http://download.redis.io/releases/redis-2.8.19.tar.gz --quiet
 RUN tar xvzf redis-2.8.19.tar.gz > /dev/null
@@ -15,11 +15,11 @@ RUN make install
 WORKDIR ../
 RUN rm -rf redis-2.8.19*
 
-# Create necessary directories.
+# create necessary directories.
 RUN mkdir /opt/redis
 RUN mkdir /opt/redis/data
 RUN mkdir /opt/redis/conf
 RUN mkdir /opt/redis/log
 
-# Cleanup history.
+# cleanup history.
 RUN history -c
