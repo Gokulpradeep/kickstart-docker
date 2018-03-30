@@ -1,1 +1,0 @@
-redis writes snapshot.rb data file in this directory.

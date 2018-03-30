@@ -2,11 +2,10 @@
 FROM demo/base:v1
 
 # install python packages.
-RUN pip install flask==0.12.1
-RUN pip install redis==2.10.5
-
-# create necessary directories.
-RUN mkdir /opt/app
+RUN set -x \
+  && pip install flask==0.12.1 \
+  && pip install redis==2.10.5 \
+  && mkdir /opt/app
 
 # cleanup history.
 RUN history -c

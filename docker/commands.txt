@@ -1,7 +1,0 @@
-spawn redis container:
-----------------------
-$ sudo docker run -d -i -t --rm --name demo-redis -h demo-redis -p 3000:6379 -v /opt/kickstart-docker/redis/data:/opt/redis/data -v /opt/kickstart-docker/redis/log:/opt/redis/log -v /opt/kickstart-docker/redis/conf/main.conf:/opt/redis/conf/redis.conf -v /opt/kickstart-docker/supervisor/conf/main.conf:/etc/supervisord.conf -v /opt/kickstart-docker/supervisor/conf/redis.ini:/etc/supervisord.d/redis.ini demo/redis:v1 /usr/bin/supervisord
-
-spawn app container:
---------------------
-$ sudo docker run -d -i -t --rm --name demo-app -h demo-app -p 2000:80 --link demo-redis:demo-redis -v /opt/kickstart-docker/app:/opt/app -v /opt/kickstart-docker/supervisor/conf/main.conf:/etc/supervisord.conf -v /opt/kickstart-docker/supervisor/conf/app.ini:/etc/supervisord.d/app.ini demo/app:v1 /usr/bin/supervisord

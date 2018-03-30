@@ -2,7 +2,6 @@ version: '3'
 services:
   app:
     image: demo/app:v1
-    container_name: demo-app
     command: "/usr/bin/supervisord -c /etc/supervisord.conf"
     hostname: demo-app
     ports:
@@ -17,7 +16,6 @@ services:
       - demo-stack
   redis:
     image: demo/redis:v1
-    container_name: demo-redis
     command: "/usr/bin/supervisord -c /etc/supervisord.conf"
     hostname: demo-redis
     volumes:
