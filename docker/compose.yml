@@ -28,3 +28,7 @@ services:
       - /opt/kickstart-docker/supervisor/conf/redis.ini:/etc/supervisord.d/redis.ini
     networks:
       - demo-stack
+networks:
+  demo-stack:
+    external:
+      name: demo-stack
