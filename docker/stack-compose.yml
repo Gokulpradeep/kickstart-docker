@@ -11,7 +11,7 @@ services:
       - /opt/kickstart-docker/supervisor/conf/main.conf:/etc/supervisord.conf
       - /opt/kickstart-docker/supervisor/conf/app.ini:/etc/supervisord.d/app.ini
     depends_on:
-      - demo-redis
+      - redis
     networks:
       - demo-stack
     deploy:
